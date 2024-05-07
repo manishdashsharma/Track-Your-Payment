@@ -1,0 +1,26 @@
+version: '3'
+services:
+  mongo:
+    image: 'mongo'
+    ports:
+      - '27017:27017'
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - mongo
+  frontend:
+    build: ./frontend
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - backend
