@@ -13,8 +13,14 @@ const loginSchema = z.object({
     password: z.string()
 });
 
+const notificationSchema = z.object({
+    title: z.string(),
+    body: z.string(),
+    token: z.string()
+})
 
 export {
     signupSchema,
-    loginSchema
+    loginSchema,
+    notificationSchema
 }

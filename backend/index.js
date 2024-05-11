@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import cookieParser from "cookie-parser"
 import routes from "./src/routes/index.js"
-import { connectToDb } from "./src/config/db.js"
+import { connectToDb } from "./src/config/db.config.js"
 import config from "./src/config/index.js"
 
 const app = express()
@@ -12,14 +12,8 @@ app.use(express.urlencoded({extended: true}))
 app.use(cors())
 app.use(cookieParser())
 
-app.use("/api/v1/", routes)
 
-app.all("*", (_req, res) => {
-    return res.status(404).json({
-        success: false,
-        message: "Route not found"
-    })
-})
+app.use("/api/v1/", routes)
 
 app.get("/", (req, res) => {
     return res.status(200).json({ 
@@ -27,6 +21,13 @@ app.get("/", (req, res) => {
         message: "Backend services are running fine" 
     });
 })
+app.all("*", (_req, res) => {
+    return res.status(404).json({
+        success: false,
+        message: "Route not found"
+    })
+})
+
 
 const onListening = () => {
     console.log(`Listening on port ${config.PORT}`);
