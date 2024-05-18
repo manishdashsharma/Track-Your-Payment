@@ -16,7 +16,7 @@ const addPaymentList = asyncHandler(async (req, res) => {
             success: false,
             message: "Invalid payload",
             errors: validatePayload.errors
-        });
+        }); 
     }
 
     let response;

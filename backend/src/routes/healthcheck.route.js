@@ -1,9 +1,16 @@
 import { Router } from "express";
-import { healthCheckService } from "../controllers/healthcheck.controller.js";
+import {
+  healthCheckService,
+  authHealthCheckServices,
+  paymentHealthCheckServices,
+  notificationHealthCheckServices,
+} from "../controllers/healthcheck.controller.js";
 
+const router = Router();
 
-const router = Router()
-
-router.get("/", healthCheckService)
+router.get("/", healthCheckService);
+router.get("/auth", authHealthCheckServices);
+router.get("/payment", paymentHealthCheckServices);
+router.get("/notification", notificationHealthCheckServices);
 
 export default router;
