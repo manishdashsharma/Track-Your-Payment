@@ -27,7 +27,7 @@
 - Ensure Docker is installed on your system.
 
 ### Environment Variables
-Set up environment variables in the `backend` folder:
+Set up environment variables in the :
 ```bash
 PORT=5000
 REFRESH_TOKEN_SECRET=<your refresh token secret>
