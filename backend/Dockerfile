@@ -1,5 +1,5 @@
 # Specify the base image
-FROM node:alpine
+FROM node:latest
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5000
 
 # Start the application
-CMD ["npm", "run" , "dev"]
+CMD ["npm", "run", "dev"]
