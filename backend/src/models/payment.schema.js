@@ -56,6 +56,13 @@ const paymentSchema = new mongoose.Schema({
         type: String,
         enum: Object.values(currency),
         default: currency.INR
+    },
+    numberOftimesPaid: {
+        type: Number,
+        default: 0
+    },
+    lastPyamentOn: {
+        type: Date
     }
 },{timeseries:true});
 

@@ -188,8 +188,11 @@ const updatePaymentStatus = asyncHandler(async(req,res)=>{
             message: "No such payment list found"
         });
     }
+    console.log("Pyament status from database",response.paymentStatus);
+    console.log("Payment Status from frontend",paymentStatus);
 
-    if (response.paymentStatus === "PAID" && paymentStatus !== "PAID") {
+
+    if (response.paymentStatus === "PAID") {
         return res.status(400).json({
             success: false,
             message: "You have already paid. You cannot change payment status"
@@ -201,6 +204,8 @@ const updatePaymentStatus = asyncHandler(async(req,res)=>{
         response.paidDate = paidDate || new Date();
         response.is_paid = paymentStatus === "PAID";
         response.reminder = paymentStatus === "PAID" ? false : true;
+        response.numberOftimesPaid = paymentStatus === "PAID"? response.numberOftimesPaid + 1 : response.numberOftimesPaid;
+        response.lastPyamentOnPaymentDate = paymentStatus === "PAID"? paidDate : ""
 
         if (paymentStatus !== "PROCESSING") {
             const { paymentType, dueDate } = response;
